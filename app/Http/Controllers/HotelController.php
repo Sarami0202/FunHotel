@@ -86,6 +86,7 @@ class HotelController extends Controller
                 'batch2' => $b_path[1],
                 'batch3' => $b_path[2],
                 'batch4' => $b_path[3],
+                'vote' => $request->vote,
             ]);
             return (1);
         } else
@@ -167,6 +168,7 @@ class HotelController extends Controller
                     'batch2' => $b_path[1],
                     'batch3' => $b_path[2],
                     'batch4' => $b_path[3],
+                    'vote' => $request->vote,
                 ]);
             } else {
                 hotel::where('id', $id)->update([
@@ -204,6 +206,7 @@ class HotelController extends Controller
                     'thumbnail4' => $d_path[2],
                     'thumbnail5' => $d_path[3],
                     'thumbnail6' => $d_path[4],
+                    'vote' => $request->vote,
                 ]);
             }
         } else if ($request["b_flg"] === "true") {
@@ -246,6 +249,7 @@ class HotelController extends Controller
                     'batch2' => $b_path[1],
                     'batch3' => $b_path[2],
                     'batch4' => $b_path[3],
+                    'vote' => $request->vote,
                 ]);
             }
         } else {
@@ -278,6 +282,7 @@ class HotelController extends Controller
                 'label4' => $request->label4,
                 'info5' => $request->info5,
                 'label5' => $request->label5,
+                'vote' => $request->vote,
             ]);
         }
     }
