@@ -39,13 +39,7 @@ class HotelController extends Controller
                 $m_path = isset($main_file) ? $main_file->store('thumbnail', 'public') : null;
             }
 
-            $b_path = array(null, null, null, null);
-            if ($request['batch'] != null) {
-                $batch_file = $request->file('batch');
-                foreach ($batch_file as $index => $img) {
-                    $b_path[$index] = isset($img) ? $img->store('batch', 'public') : null;
-                }
-            }
+
 
             hotel::insert([
                 'name' => $request->name,
@@ -82,10 +76,14 @@ class HotelController extends Controller
                 'thumbnail4' => $d_path[2],
                 'thumbnail5' => $d_path[3],
                 'thumbnail6' => $d_path[4],
-                'batch1' => $b_path[0],
-                'batch2' => $b_path[1],
-                'batch3' => $b_path[2],
-                'batch4' => $b_path[3],
+                'batch1' => $request->batch1,
+                'batch2' => $request->batch2,
+                'batch3' => $request->batch3,
+                'batch4' => $request->batch4,
+                'batch_name1' => $request->batch_name1,
+                'batch_name2' => $request->batch_name2,
+                'batch_name3' => $request->batch_name3,
+                'batch_name4' => $request->batch_name4,
                 'vote' => $request->vote,
             ]);
             return (1);
@@ -120,138 +118,51 @@ class HotelController extends Controller
                 $m_path = isset($main_file) ? $main_file->store('thumbnail', 'public') : null;
             }
 
-
-            if ($request["b_flg"] === "true") {
-                $b_path = array(null, null, null, null);
-                if ($request['batch'] != null) {
-                    $batch_file = $request->file('batch');
-                    foreach ($batch_file as $index => $img) {
-                        $b_path[$index] = isset($img) ? $img->store('batch', 'public') : null;
-                    }
-                }
-                hotel::where('id', $id)->update([
-                    'name' => $request->name,
-                    'prefecture' => $request->prefecture,
-                    'tell' => $request->tell,
-                    'address' => $request->address,
-                    'access' => $request->access,
-                    'category' => $request->category,
-                    'stick1' => $request->stick1,
-                    'stick2' => $request->stick2,
-                    'stick3' => $request->stick3,
-                    'stick4' => $request->stick4,
-                    'body' => $request->body,
-                    'html' => $request->html,
-                    'instagram' => $request->instagram,
-                    'twitter' => $request->twitter,
-                    'facebook' => $request->facebook,
-                    'youtube' => $request->youtube,
-                    'google' => $request->google,
-                    'tiktok' => $request->tiktok,
-                    'info1' => $request->info1,
-                    'label1' => $request->label1,
-                    'info2' => $request->info2,
-                    'label2' => $request->label2,
-                    'info3' => $request->info3,
-                    'label3' => $request->label3,
-                    'info4' => $request->info4,
-                    'label4' => $request->label4,
-                    'info5' => $request->info5,
-                    'label5' => $request->label5,
-                    'thumbnail1' => $m_path,
-                    'thumbnail2' => $d_path[0],
-                    'thumbnail3' => $d_path[1],
-                    'thumbnail4' => $d_path[2],
-                    'thumbnail5' => $d_path[3],
-                    'thumbnail6' => $d_path[4],
-                    'batch1' => $b_path[0],
-                    'batch2' => $b_path[1],
-                    'batch3' => $b_path[2],
-                    'batch4' => $b_path[3],
-                    'vote' => $request->vote,
-                ]);
-            } else {
-                hotel::where('id', $id)->update([
-                    'name' => $request->name,
-                    'prefecture' => $request->prefecture,
-                    'tell' => $request->tell,
-                    'address' => $request->address,
-                    'access' => $request->access,
-                    'category' => $request->category,
-                    'stick1' => $request->stick1,
-                    'stick2' => $request->stick2,
-                    'stick3' => $request->stick3,
-                    'stick4' => $request->stick4,
-                    'body' => $request->body,
-                    'html' => $request->html,
-                    'instagram' => $request->instagram,
-                    'twitter' => $request->twitter,
-                    'facebook' => $request->facebook,
-                    'youtube' => $request->youtube,
-                    'google' => $request->google,
-                    'tiktok' => $request->tiktok,
-                    'info1' => $request->info1,
-                    'label1' => $request->label1,
-                    'info2' => $request->info2,
-                    'label2' => $request->label2,
-                    'info3' => $request->info3,
-                    'label3' => $request->label3,
-                    'info4' => $request->info4,
-                    'label4' => $request->label4,
-                    'info5' => $request->info5,
-                    'label5' => $request->label5,
-                    'thumbnail1' => $m_path,
-                    'thumbnail2' => $d_path[0],
-                    'thumbnail3' => $d_path[1],
-                    'thumbnail4' => $d_path[2],
-                    'thumbnail5' => $d_path[3],
-                    'thumbnail6' => $d_path[4],
-                    'vote' => $request->vote,
-                ]);
-            }
-        } else if ($request["b_flg"] === "true") {
-            $b_path = array(null, null, null, null);
-            if ($request['batch'] != null) {
-                $batch_file = $request->file('batch');
-                foreach ($batch_file as $index => $img) {
-                    $b_path[$index] = isset($img) ? $img->store('batch', 'public') : null;
-                }
-                hotel::where('id', $id)->update([
-                    'name' => $request->name,
-                    'prefecture' => $request->prefecture,
-                    'tell' => $request->tell,
-                    'address' => $request->address,
-                    'access' => $request->access,
-                    'category' => $request->category,
-                    'stick1' => $request->stick1,
-                    'stick2' => $request->stick2,
-                    'stick3' => $request->stick3,
-                    'stick4' => $request->stick4,
-                    'body' => $request->body,
-                    'html' => $request->html,
-                    'instagram' => $request->instagram,
-                    'twitter' => $request->twitter,
-                    'facebook' => $request->facebook,
-                    'youtube' => $request->youtube,
-                    'google' => $request->google,
-                    'tiktok' => $request->tiktok,
-                    'info1' => $request->info1,
-                    'label1' => $request->label1,
-                    'info2' => $request->info2,
-                    'label2' => $request->label2,
-                    'info3' => $request->info3,
-                    'label3' => $request->label3,
-                    'info4' => $request->info4,
-                    'label4' => $request->label4,
-                    'info5' => $request->info5,
-                    'label5' => $request->label5,
-                    'batch1' => $b_path[0],
-                    'batch2' => $b_path[1],
-                    'batch3' => $b_path[2],
-                    'batch4' => $b_path[3],
-                    'vote' => $request->vote,
-                ]);
-            }
+            hotel::where('id', $id)->update([
+                'name' => $request->name,
+                'prefecture' => $request->prefecture,
+                'tell' => $request->tell,
+                'address' => $request->address,
+                'access' => $request->access,
+                'category' => $request->category,
+                'stick1' => $request->stick1,
+                'stick2' => $request->stick2,
+                'stick3' => $request->stick3,
+                'stick4' => $request->stick4,
+                'body' => $request->body,
+                'html' => $request->html,
+                'instagram' => $request->instagram,
+                'twitter' => $request->twitter,
+                'facebook' => $request->facebook,
+                'youtube' => $request->youtube,
+                'google' => $request->google,
+                'tiktok' => $request->tiktok,
+                'info1' => $request->info1,
+                'label1' => $request->label1,
+                'info2' => $request->info2,
+                'label2' => $request->label2,
+                'info3' => $request->info3,
+                'label3' => $request->label3,
+                'info4' => $request->info4,
+                'label4' => $request->label4,
+                'info5' => $request->info5,
+                'label5' => $request->label5,
+                'thumbnail1' => $m_path,
+                'thumbnail2' => $d_path[0],
+                'thumbnail3' => $d_path[1],
+                'thumbnail4' => $d_path[2],
+                'thumbnail5' => $d_path[3],
+                'thumbnail6' => $d_path[4],
+                'batch1' => $request->batch1,
+                'batch2' => $request->batch2,
+                'batch3' => $request->batch3,
+                'batch4' => $request->batch4,
+                'batch_name1' => $request->batch_name1,
+                'batch_name2' => $request->batch_name2,
+                'batch_name3' => $request->batch_name3,
+                'batch_name4' => $request->batch_name4,
+                'vote' => $request->vote,
+            ]);
         } else {
             hotel::where('id', $id)->update([
                 'name' => $request->name,
@@ -282,6 +193,14 @@ class HotelController extends Controller
                 'label4' => $request->label4,
                 'info5' => $request->info5,
                 'label5' => $request->label5,
+                'batch1' => $request->batch1,
+                'batch2' => $request->batch2,
+                'batch3' => $request->batch3,
+                'batch4' => $request->batch4,
+                'batch_name1' => $request->batch_name1,
+                'batch_name2' => $request->batch_name2,
+                'batch_name3' => $request->batch_name3,
+                'batch_name4' => $request->batch_name4,
                 'vote' => $request->vote,
             ]);
         }
