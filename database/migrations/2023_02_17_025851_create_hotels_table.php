@@ -48,14 +48,6 @@ return new class extends Migration
             $table->string('thumbnail4')->nullable();
             $table->string('thumbnail5')->nullable();
             $table->string('thumbnail6')->nullable();
-            $table->string('batch_name1')->default(0);
-            $table->string('batch_name2')->default(0);
-            $table->string('batch_name3')->default(0);
-            $table->string('batch_name4')->default(0);
-            $table->string('batch1')->default(0);
-            $table->string('batch2')->default(0);
-            $table->string('batch3')->default(0);
-            $table->string('batch4')->default(0);
         });
     }
 
